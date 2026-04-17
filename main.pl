@@ -2,7 +2,7 @@
 :- consult(logic).
 
 % Example usage
-run :- 
+start :- 
     nl ,nl , writeln('#======= Student & Grade Management System =======#'), nl ,nl ,
     writeln('    [1] - Add new student'),
     writeln('    [2] - Delete student'),
@@ -61,7 +61,7 @@ flow_confirmation :-
             writeln('#~ Thank you.'),nl
         ;FlowOption=1 ->
             sleep(2),
-            run
+            start
         ;writeln('[Error] - Invalid input.'),
         flow_confirmation   
     ).
