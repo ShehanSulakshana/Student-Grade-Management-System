@@ -15,7 +15,7 @@ show_student:-
     nl,
     (student(StudentID, FName, LName, Level) ->
         nl,
-        format('#~ ~w | ~w ~w | Level: ~w~n',[StudentID, FName, LName, Level]),
+        format('#- ~w | ~w ~w | Level: ~w~n',[StudentID, FName, LName, Level]),
         nl
     ;nl,format('~n~n[Error] - No student found with ID = ~w~n~n', [StudentID]),nl ,nl).
 
@@ -31,7 +31,7 @@ add_student :-
     ; (Level < 3 ; Level > 6) ->
         write('[Error] - Invalid level (Only 3-6 allowed)!'),nl
     ; assertz(student(StudentID, FName, LName, Level)),
-      write('#~ Student added successfully')
+      write('#- Student added successfully')
     ).
 
 
@@ -41,11 +41,11 @@ delete_student :-
     write('[?] - Enter Student ID : '), read(StudentID),
     nl,
     ( retract(student(StudentID, FName, LName, Level)) ->
-        format('#~ Removed student: ~w ~w ~n',
+        format('#- Removed student: ~w ~w ~n',
                [FName, LName]),
 
         retractall(marks(StudentID, _)),
-        format('#~ Removed all marks for student ID ~w~n', [StudentID])
+        format('#- Removed all marks for student ID ~w~n', [StudentID])
     ;
     format('~n~n[Error] - No student found with ID = ~w~n~n', [StudentID])
     ).
@@ -63,8 +63,8 @@ show_marks:-
     write('[?] - Enter Student ID : '), read(StudentID),
     nl,
     ( student_exists(StudentID) ->
-    write('#~ student id : '),write(StudentID),nl,
-    write('#~ marks list :: '),
+    write('#- student id : '),write(StudentID),nl,
+    write('#- marks list :: '),
     nl,nl,
     forall(marks(StudentID,SubjectID,Marks),
         format('   ~w | ~w ~n',
@@ -88,7 +88,7 @@ add_marks :-
     ; (Marks < 0 ; Marks > 100) ->
         write('[Error] - Invalid marks (Only 0-100 allowed)!'),nl
     ; assertz(marks(StudentID, SubjectCode, Marks)),
-      write('#~ Student marks added successfully')
+      write('#- Student marks added successfully')
     ).
 
 
@@ -100,9 +100,9 @@ delete_marks :-
     write('[?] - Enter Subject Code : '), read(SubjectCode),
     nl,
     ( retract(marks(StudentID, SubjectCode, _)) ->
-        nl, write('#~ Marks deleted successfully.'), nl
+        nl, write('#- Marks deleted successfully.'), nl
     ;
-        nl, write('[Error] - Subject Code not found.'), nl
+        nl, write('[Error] - Invalid input.'), nl
     ).
 
 
