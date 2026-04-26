@@ -45,7 +45,7 @@ handle_selection(Option) :-
     ; Option =:= 8 ->
         report_student , flow_confirmation 
     ; Option =:= 0 ->
-            nl,writeln('#~ Thank you.'),nl
+            nl,writeln('#- Thank you.'),nl
             
     ; nl,writeln('[Error] - Invalid Option'),
         writeln('[*] - Please try Again.'),nl.
@@ -58,7 +58,7 @@ flow_confirmation :-
     nl,
     (
         FlowOption=0 ->
-            writeln('#~ Thank you.'),nl
+            writeln('#- Thank you.'),nl
         ;FlowOption=1 ->
             sleep(2),
             start
